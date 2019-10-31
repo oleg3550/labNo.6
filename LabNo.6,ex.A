@@ -1,0 +1,31 @@
+#include<iostream>
+using namespace std;
+
+const int n = 301;
+char* rtrim(const char* clstr)
+{
+	int temp = 0;
+	bool flag = true;
+	char* newstr = new char[n];
+	for (int i=0; i < n; i++)
+	{
+		if (clstr[i] == ' '&&flag==true)
+			continue;
+		else
+		{
+			flag = false;
+			newstr[temp] = clstr[i];
+			temp++;
+		}
+		if (clstr[i] == '\0')
+			break;
+	}
+	return newstr;
+}
+void main()
+{
+	char* str = new char[n];
+	cin.getline(str,n);
+	cout<<rtrim(str);
+	delete[]str;
+}
