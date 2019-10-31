@@ -1,3 +1,9 @@
+/*
+Строка состоит из слов, разделенных ровно одним пробелом, пробелов перед первым и
+после последнего слова нет. Поместить в начало строки слова, содержащие только символы
+латинского алфавита, а затем – все остальные слова, Порядок слов внутри заданных групп не
+должен изменяться.
+*/
 #include<iostream>
 using namespace std;
 
@@ -11,18 +17,15 @@ int main()
 	int counter = -1;
 	int temp = 0;
 	int secTemp = 0;
-	int lastCounter = n-1;
-	bool space = false;
+	int lastCounter = n - 1;
 	bool lastSpace = true;
-	bool emptyPlace = false;
-	bool flag = true;
-	for (int j = 0; j < n; j++)
+	for (;;)
 	{
 		counter++;
-		emptyPlace = false;
-	    flag = true;
-		space = false;
-	    temp = counter;
+		bool emptyPlace = false;
+		bool flag = true;
+		bool space = false;
+		temp = counter;
 		secTemp = counter;
 		for (; counter < n; counter++)
 		{
@@ -46,7 +49,7 @@ int main()
 		}
 		if (space == false)
 			break;
-		for (; temp <=counter; temp++)
+		for (; temp <= counter; temp++)
 		{
 			if (emptyPlace == false && space == true)
 			{
@@ -69,18 +72,18 @@ int main()
 				}
 			}
 		}
-		if (flag == true)
+		if (flag ==true)
 		{
-			for (int newCounter = secTemp; newCounter <temp; newCounter++)
-						trueStr[newCounter] = str[newCounter];
+			for (int newCounter = secTemp; newCounter < temp; newCounter++)
+				trueStr[newCounter] = str[newCounter];
 		}
 		if (flag == false)
 		{
-			for (;;lastCounter--)
+			for (;; lastCounter--)
 			{
 
 				falseStr[lastCounter] = str[secTemp];
-				if (secTemp<temp-1)
+				if (secTemp < temp - 1)
 					secTemp++;
 				else
 				{
@@ -93,17 +96,17 @@ int main()
 	char* newStr = new char[n];
 	for (int k = 0; k < n; k++)
 	{
-		if (trueStr[k] != 'Н'&&trueStr[k]!= '\0')
+		if (trueStr[k] != 'Н' && trueStr[k] != '\0')
 			newStr[k] = trueStr[k];
 	}
 	newStr[temp] = ' ';
-	for (int j = n -2; j > 0; j--)
+	for (int j = n - 2; j > 0; j--)
 	{
-			newStr[j] = falseStr[lastCounter];
-			if (lastCounter < n - 1)
-				lastCounter++;
-			else
-				break;
+		newStr[j] = falseStr[lastCounter];
+		if (lastCounter < n - 1)
+			lastCounter++;
+		else
+			break;
 	}
 	for (int b = 0; b < n; b++)
 	{
